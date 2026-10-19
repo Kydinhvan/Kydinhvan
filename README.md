@@ -6,7 +6,7 @@ Open to 2027 new-grad roles in Singapore: AI engineer, software engineer, AI inf
 
 [LinkedIn](https://www.linkedin.com/in/kydinhvan/) | Singapore
 
-<img src="https://skillicons.dev/icons?i=python,pytorch,sklearn,pandas,numpy,fastapi,flask,flutter,dart,aws,gcp,docker,java,js,html,css&perline=16" alt="Tech stack" />
+<img src="https://skillicons.dev/icons?i=python,pytorch,sklearn,fastapi,flask,flutter,dart,aws,gcp,docker,java,js,html,css&perline=14" alt="Tech stack" />
 
 ![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat&logo=langchain&logoColor=white)
 ![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat&logo=huggingface&logoColor=black)
