@@ -29,49 +29,13 @@ Open to 2027 new-grad roles in Singapore: AI agent engineering, software enginee
 
 ---
 
-## How I build agents
+## Engineering principles
 
-The shape I keep coming back to for agents over enterprise data. The agent plans and acts in a loop, every tool call is validated before it touches a system, state survives across turns, and an evaluation harness gates every change.
-
-```mermaid
-flowchart LR
-  Q["Question"] --> A["ReAct agent loop"]
-  A --> T["Tools: retrieval, SQL, workflow skills"]
-  T --> V["Validation: schema and AST checks, guardrails"]
-  V --> A
-  A --> R["Answer with cited evidence"]
-  S[("Checkpointed conversation state")] <--> A
-  E["LLM-as-judge eval harness"] -.-> A
-```
-
-Design habits:
-- Business workflows are exposed to the agent as skills it loads progressively, not one giant prompt.
-- Context is managed explicitly: scoped state per conversation and rolling summarisation for long sessions.
-- Generated SQL is parsed and validated against a semantic layer before execution.
-- Evals are calibrated against human-owned labels, so the judge model is itself checked.
-
----
-
-## Sensor to cloud
-
-The pipeline behind N3ST, a pediatric developmental tracking platform: play blocks with force sensors feed an analytics backend used by therapists and parents.
-
-```mermaid
-flowchart LR
-  B["Sensor blocks"] --> G["Gateway firmware"]
-  G -->|"MQTT over mutual TLS"| I["AWS IoT Core"]
-  I --> P["Ingest and dedup"]
-  P --> D[("Time series storage")]
-  D --> API["FastAPI"]
-  API --> M["Flutter apps"]
-  API --> L["LLM report agent with guardrails"]
-```
-
-Design habits:
-- Acknowledgements and sequence-based dedup at every hop, so a flaky connection never silently drops or doubles data.
-- The report agent works from precomputed features and charting tools, cites its evidence, and its actions are guardrailed.
-- Infrastructure is defined in AWS CDK (Python) so it can be redeployed anywhere.
-- Features and fixes are implemented by coding agents and checked by validator sub-agents before human review.
+- Agents earn trust through validation and evaluation, not bigger prompts.
+- State, context and tool access are design problems, not afterthoughts.
+- Systems should fail visibly: retries, observability and delivery guarantees from day one.
+- Infrastructure is code, so it can be rebuilt anywhere.
+- Coding agents can write the change, but a second agent validates it before a human reviews.
 
 ---
 
@@ -101,7 +65,7 @@ Design habits:
 
 ## Currently
 
-- Moving the N3ST device and cloud stack to AWS IoT Core with CDK, and redesigning reconnect behaviour for production.
+- Taking a hardware and software product from prototype toward production.
 - Building out agent evaluation and guardrail tooling for enterprise agents.
 - Exploring multi-agent coding workflows with validator agents in the loop.
 
